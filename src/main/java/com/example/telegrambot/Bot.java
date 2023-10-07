@@ -173,7 +173,7 @@ public class Bot extends TelegramLongPollingBot {
     @Transactional
     public void stopTaskSchedulerForUser(Long userId) {
 
-        taskRepository.deactivateAlarmsForUser(userId);
+        taskRepository.deleteByUserId(userId);
 
         // Cancel the ScheduledFuture
         ScheduledFuture<?> future = userSchedulers.get(userId);

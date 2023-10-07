@@ -19,5 +19,8 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     @Modifying
     @Query("update  Task t set t.alarmActive = true where t.id = ?1")
     void setAlarmActive(Long id);
-
+    @Modifying
+    @Transactional
+    @Query("delete  Task t where t.userId =  ?1")
+    void deleteByUserId(Long userId);
 }
